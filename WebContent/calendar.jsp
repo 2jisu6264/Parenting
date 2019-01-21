@@ -1,9 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="calendar.EventBean"%>
+    pageEncoding="UTF-8" %>
   <jsp:useBean id="eventlist" class = "java.util.ArrayList" scope="request"/>
  <%@ page import = "java.util.Calendar" %> 
  <%@ page import="java.util.GregorianCalendar" %>
+<%@ page import = "java.sql.DriverManager" %>
+    <%@ page import = "java.sql.Connection"%>
+    <%@ page import = "java.sql.PreparedStatement"%>
+    <%@ page import = "java.sql.ResultSet" %>
+    <%@ page import = "java.sql.SQLException" %>
+<%
+Connection conn = null;
+PreparedStatement pstmt=  null;
+String jdbcDriver = "jdbc:mysql://localhost:3306/mydb?useSSL=false";
+try{
+    Class.forName("com.mysql.cj.jdbc.Driver");
+ 
+    String dbUser = "root";
+    String dbPass = "rootpw";
+ conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+ System.out.println("Driver found! Connection Good!");
+ }catch(SQLException se)
+ {se.printStackTrace();
+ }
 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,6 +88,22 @@ for(int blank=1; blank< week; blank++){
 %>
 <pp><th  width= 120px; height= 50px;><%=tempDay %></pp>
 <%
+int cyear, cmonth, cday;
+try{ String sql = "SELECT babyyear, babymonth, babyday, babyname, babyplace FROM calendar";
+pstmt = conn.prepareStatement(sql);
+ResultSet rs = pstmt.executeQuery();
+while(rs.next())
+{
+	cyear = rs.getInt("babyyear");
+	cmonth = rs.getInt("babymonth");
+	cday = rs.getInt("babyday");
+	if(nYear==cyear && nMonth == cmonth && tempDay == cday){
+		out.println(rs.getString("babyname")+"<br>");
+	}
+	
+}
+}catch(Exception e){}
+
 switch(cal.get(Calendar.DAY_OF_WEEK)){
 case Calendar.SATURDAY:
 %>

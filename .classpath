@@ -14,5 +14,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47-bin.jar"/>
+	<classpathentry kind="lib" path="D:/jsoup-1.11.3.jar"/>
+	<classpathentry kind="lib" path="D:/jsoup-1.11.3-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/jsoup-1.11.3-sources.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
