@@ -8,14 +8,7 @@
 			<attribute name="owner.project.facets" value="#system#;jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_191">
-		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="D:/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47-bin.jar"/>
-	<classpathentry kind="lib" path="D:/jsoup-1.11.3.jar"/>
-	<classpathentry kind="lib" path="D:/jsoup-1.11.3-javadoc.jar"/>
-	<classpathentry kind="lib" path="D:/jsoup-1.11.3-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Eclipse_Workspace/◆WebService/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
