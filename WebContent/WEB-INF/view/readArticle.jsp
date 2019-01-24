@@ -5,6 +5,7 @@
 <html>
 <head>
 <title>게시글 읽기</title>
+<link rel="stylesheet" href="../bootstrap-3.3.2-dist/css/bootstrap.min.css">
 </head>
 <body>
 <table border="1" width="100%">
@@ -29,12 +30,13 @@
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}" />
 		<a href="list.do?pageNo=${pageNo}">[목록]</a>
 		<c:if test="${authUser.id == articleData.article.writer.id}">
-		<a href="modify.do?no=${articleData.article.number}">[게시글수정]</a>
-		<a href="delete.do?no=${articleData.article.number}">[게시글삭제]</a>
+		<a class="btn btn-default pull-right" href="modify.do?no=${articleData.article.number}">수정</a>
+		<a class="btn btn-default pull-right" href="delete.do?no=${articleData.article.number}">삭제</a>
 		</c:if>
 	</td>
 </tr>
 </table>
 
+<script src="../bootstrap-3.3.2-dist/js/bootstrap.js"></script>
 </body>
 </html>

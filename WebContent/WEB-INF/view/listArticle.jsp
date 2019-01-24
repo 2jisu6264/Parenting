@@ -4,19 +4,19 @@
 <html>
 <head>
 <title>게시글 목록</title>
+<link rel="stylesheet" href="../bootstrap-3.3.2-dist/css/bootstrap.min.css">
 </head>
 <body>
-
-<table border="1">
-	<tr>
-		<td colspan="4"><a href="write.do">[게시글쓰기]</a></td>
-	</tr>
-	<tr>
-		<td>번호</td>
-		<td>제목</td>
-		<td>작성자</td>
-		<td>조회수</td>
-	</tr>
+<div class="container">
+	<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>조회수</th>
+		</tr>
+	</thead>
 <c:if test="${articlePage.hasNoArticles()}">
 	<tr>
 		<td colspan="4">게시글이 없습니다.</td>
@@ -34,23 +34,27 @@
 		<td>${article.readCount}</td>
 	</tr>
 </c:forEach>
+</table>
 <c:if test="${articlePage.hasArticles()}">
-	<tr>
-		<td colspan="4">
+	<div class="text-center">
+		<ul class="pagination">
 			<c:if test="${articlePage.startPage > 5}">
-			<a href="list.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+			<li><a href="list.do?pageNo=${articlePage.startPage - 5}">이전</a></li>
 			</c:if>
 			<c:forEach var="pNo" 
 					   begin="${articlePage.startPage}" 
 					   end="${articlePage.endPage}">
-			<a href="list.do?pageNo=${pNo}">[${pNo}]</a>
+			<li><a href="list.do?pageNo=${pNo}">${pNo}</a></li>
 			</c:forEach>
 			<c:if test="${articlePage.endPage < articlePage.totalPages}">
-			<a href="list.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
+			<li><a href="list.do?pageNo=${articlePage.startPage + 5}">다음</a></li>
 			</c:if>
-		</td>
-	</tr>
+		</ul>
+	</div>
 </c:if>
-</table>
+	<a class="btn btn-default pull-right" href="write.do">게시글쓰기</a>
+</div>
+
+<script src="../bootstrap-3.3.2-dist/js/bootstrap.js"></script>
 </body>
 </html>
