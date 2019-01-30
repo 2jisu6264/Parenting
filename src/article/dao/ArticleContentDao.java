@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import article.model.ArticleContent;
+import article.model.ArticleContentBean;
 import jdbc.JdbcUtil;
 
 public class ArticleContentDao {
 
-	public ArticleContent insert(Connection conn, ArticleContent content) 
+	public ArticleContentBean insert(Connection conn, ArticleContentBean content) 
 	throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
@@ -30,7 +30,7 @@ public class ArticleContentDao {
 		}
 	}
 	
-	public ArticleContent selectById(Connection conn, int no) throws SQLException {
+	public ArticleContentBean selectById(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -38,9 +38,9 @@ public class ArticleContentDao {
 					"select * from article_content where article_no = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
-			ArticleContent content = null;
+			ArticleContentBean content = null;
 			if (rs.next()) {
-				content = new ArticleContent(
+				content = new ArticleContentBean(
 						rs.getInt("article_no"), rs.getString("content"));
 			}
 			return content;

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import article.dao.ArticleDao;
-import article.model.Article;
+import article.model.ArticleBean;
 import jdbc.connection.ConnectionProvider;
 
 public class ListArticleService {
@@ -16,7 +16,7 @@ public class ListArticleService {
 	public ArticlePage getArticlePage(int pageNum) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			int total = articleDao.selectCount(conn);
-			List<Article> content = articleDao.select(
+			List<ArticleBean> content = articleDao.select(
 					conn, (pageNum - 1) * size, size);
 			return new ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {

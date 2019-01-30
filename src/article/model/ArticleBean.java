@@ -2,16 +2,16 @@ package article.model;
 
 import java.util.Date;
 
-public class Article {
+public class ArticleBean {
 
 	private Integer number;
-	private Writer writer;
+	private WriterBean writer;
 	private String title;
 	private Date regDate;
 	private Date modifiedDate;
 	private int readCount;
 
-	public Article(Integer number, Writer writer, String title, 
+	public ArticleBean(Integer number, WriterBean writer, String title, 
 			Date regDate, Date modifiedDate, int readCount) {
 		this.number = number;
 		this.writer = writer;
@@ -25,7 +25,7 @@ public class Article {
 		return number;
 	}
 
-	public Writer getWriter() {
+	public WriterBean getWriter() {
 		return writer;
 	}
 

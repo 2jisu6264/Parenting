@@ -8,11 +8,11 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import jdbc.JdbcUtil;
-import member.model.Member;
+import member.model.MemberBean;
 
 public class MemberDao {
 
-	public Member selectById(Connection conn, String id) throws SQLException {
+	public MemberBean selectById(Connection conn, String id) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -20,9 +20,9 @@ public class MemberDao {
 					"select * from member where memberid = ?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			Member member = null;
+			MemberBean member = null;
 			if (rs.next()) {
-				member = new Member(
+				member = new MemberBean(
 						rs.getString("memberid"), 
 						rs.getString("name"), 
 						rs.getString("password"),
@@ -39,7 +39,7 @@ public class MemberDao {
 		return date == null ? null : new Date(date.getTime());
 	}
 
-	public void insert(Connection conn, Member mem) throws SQLException {
+	public void insert(Connection conn, MemberBean mem) throws SQLException {
 		try (PreparedStatement pstmt = 
 				conn.prepareStatement("insert into member values(?,?,?,?)")) {
 			pstmt.setString(1, mem.getId());
@@ -50,7 +50,7 @@ public class MemberDao {
 		}
 	}
 
-	public void update(Connection conn, Member member) throws SQLException {
+	public void update(Connection conn, MemberBean member) throws SQLException {
 		try (PreparedStatement pstmt = conn.prepareStatement(
 				"update member set name = ?, password = ? where memberid = ?")) {
 			pstmt.setString(1, member.getName());

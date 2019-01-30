@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import article.model.Writer;
+import article.model.WriterBean;
 import article.service.WriteArticleService;
 import article.service.WriteRequest;
 import auth.service.User;
@@ -52,7 +52,7 @@ public class WriteArticleHandler implements CommandHandler {
 
 	private WriteRequest createWriteRequest(User user, HttpServletRequest req) {
 		return new WriteRequest(
-				new Writer(user.getId(), user.getName()),
+				new WriterBean(user.getId(), user.getName()),
 				req.getParameter("title"),
 				req.getParameter("content"));
 	}

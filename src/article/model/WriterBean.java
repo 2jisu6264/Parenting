@@ -1,11 +1,11 @@
 package article.model;
 
-public class Writer {
+public class WriterBean {
 
 	private String id;
 	private String name;
 
-	public Writer(String id, String name) {
+	public WriterBean(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}

@@ -7,7 +7,7 @@ import java.util.Date;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 import member.dao.MemberDao;
-import member.model.Member;
+import member.model.MemberBean;
 
 public class JoinService {
 
@@ -19,14 +19,14 @@ public class JoinService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			Member member = memberDao.selectById(conn, joinReq.getId());
+			MemberBean member = memberDao.selectById(conn, joinReq.getId());
 			if (member != null) {
 				JdbcUtil.rollback(conn);
 				throw new DuplicateIdException();
 			}
 			
 			memberDao.insert(conn, 
-					new Member(
+					new MemberBean(
 							joinReq.getId(), 
 							joinReq.getName(), 
 							joinReq.getPassword(), 

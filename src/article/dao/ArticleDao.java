@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import article.model.Article;
-import article.model.Writer;
+import article.model.ArticleBean;
+import article.model.WriterBean;
 import jdbc.JdbcUtil;
 
 public class ArticleDao {
 
-	public Article insert(Connection conn, Article article) throws SQLException {
+	public ArticleBean insert(Connection conn, ArticleBean article) throws SQLException {
 		PreparedStatement pstmt = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -36,7 +36,7 @@ public class ArticleDao {
 				rs = stmt.executeQuery("select last_insert_id() from article");
 				if (rs.next()) {
 					Integer newNo = rs.getInt(1);
-					return new Article(newNo,
+					return new ArticleBean(newNo,
 							article.getWriter(),
 							article.getTitle(),
 							article.getRegDate(),
@@ -72,7 +72,7 @@ public class ArticleDao {
 		}
 	}
 
-	public List<Article> select(Connection conn, int startRow, int size) throws SQLException {
+	public List<ArticleBean> select(Connection conn, int startRow, int size) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -81,7 +81,7 @@ public class ArticleDao {
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
-			List<Article> result = new ArrayList<>();
+			List<ArticleBean> result = new ArrayList<>();
 			while (rs.next()) {
 				result.add(convertArticle(rs));
 			}
@@ -92,9 +92,9 @@ public class ArticleDao {
 		}
 	}
 
-	private Article convertArticle(ResultSet rs) throws SQLException {
-		return new Article(rs.getInt("article_no"),
-				new Writer(
+	private ArticleBean convertArticle(ResultSet rs) throws SQLException {
+		return new ArticleBean(rs.getInt("article_no"),
+				new WriterBean(
 						rs.getString("writer_id"),
 						rs.getString("writer_name")),
 				rs.getString("title"),
@@ -107,7 +107,7 @@ public class ArticleDao {
 		return new Date(timestamp.getTime());
 	}
 	
-	public Article selectById(Connection conn, int no) throws SQLException {
+	public ArticleBean selectById(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -115,7 +115,7 @@ public class ArticleDao {
 					"select * from article where article_no = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
-			Article article = null;
+			ArticleBean article = null;
 			if (rs.next()) {
 				article = convertArticle(rs);
 			}

@@ -1,19 +1,19 @@
 package article.service;
 
-import article.model.Article;
-import article.model.ArticleContent;
+import article.model.ArticleBean;
+import article.model.ArticleContentBean;
 
 public class ArticleData {
 
-	private Article article;
-	private ArticleContent content;
+	private ArticleBean article;
+	private ArticleContentBean content;
 
-	public ArticleData(Article article, ArticleContent content) {
+	public ArticleData(ArticleBean article, ArticleContentBean content) {
 		this.article = article;
 		this.content = content;
 	}
 
-	public Article getArticle() {
+	public ArticleBean getArticle() {
 		return article;
 	}
 

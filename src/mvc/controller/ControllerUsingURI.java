@@ -18,7 +18,7 @@ import mvc.command.NullHandler;
 
 public class ControllerUsingURI extends HttpServlet {
 
-    // <커맨드, 핸들러인스턴스> 매핑 정보 저장
+    // <而ㅻ㎤�뱶, �빖�뱾�윭�씤�뒪�꽩�뒪> 留ㅽ븨 �젙蹂� ���옣
     private Map<String, CommandHandler> commandHandlerMap = 
     		new HashMap<>();
 

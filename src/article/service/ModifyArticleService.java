@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import article.dao.ArticleContentDao;
 import article.dao.ArticleDao;
-import article.model.Article;
+import article.model.ArticleBean;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
@@ -20,7 +20,7 @@ public class ModifyArticleService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 			
-			Article article = articleDao.selectById(conn, 
+			ArticleBean article = articleDao.selectById(conn, 
 					modReq.getArticleNumber());
 			if (article == null) {
 				throw new ArticleNotFoundException();
@@ -44,7 +44,7 @@ public class ModifyArticleService {
 		}
 	}
 
-	private boolean canModify(String modfyingUserId, Article article) {
+	private boolean canModify(String modfyingUserId, ArticleBean article) {
 		return article.getWriter().getId().equals(modfyingUserId);
 	}
 }

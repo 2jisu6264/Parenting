@@ -2,18 +2,18 @@ package article.service;
 
 import java.util.List;
 
-import article.model.Article;
+import article.model.ArticleBean;
 
 public class ArticlePage {
 
 	private int total;
 	private int currentPage;
-	private List<Article> content;
+	private List<ArticleBean> content;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 
-	public ArticlePage(int total, int currentPage, int size, List<Article> content) {
+	public ArticlePage(int total, int currentPage, int size, List<ArticleBean> content) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.content = content;
@@ -55,7 +55,7 @@ public class ArticlePage {
 		return totalPages;
 	}
 
-	public List<Article> getContent() {
+	public List<ArticleBean> getContent() {
 		return content;
 	}
 

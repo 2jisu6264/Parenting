@@ -6,8 +6,8 @@ import java.util.Date;
 
 import article.dao.ArticleContentDao;
 import article.dao.ArticleDao;
-import article.model.Article;
-import article.model.ArticleContent;
+import article.model.ArticleBean;
+import article.model.ArticleContentBean;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
@@ -22,15 +22,15 @@ public class WriteArticleService {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
 
-			Article article = toArticle(req);
-			Article savedArticle = articleDao.insert(conn, article);
+			ArticleBean article = toArticle(req);
+			ArticleBean savedArticle = articleDao.insert(conn, article);
 			if (savedArticle == null) {
 				throw new RuntimeException("fail to insert article");
 			}
-			ArticleContent content = new ArticleContent(
+			ArticleContentBean content = new ArticleContentBean(
 					savedArticle.getNumber(),
 					req.getContent());
-			ArticleContent savedContent = contentDao.insert(conn, content);
+			ArticleContentBean savedContent = contentDao.insert(conn, content);
 			if (savedContent == null) {
 				throw new RuntimeException("fail to insert article_content");
 			}
@@ -49,8 +49,8 @@ public class WriteArticleService {
 		}
 	}
 
-	private Article toArticle(WriteRequest req) {
+	private ArticleBean toArticle(WriteRequest req) {
 		Date now = new Date();
-		return new Article(null, req.getWriter(), req.getTitle(), now, now, 0);
+		return new ArticleBean(null, req.getWriter(), req.getTitle(), now, now, 0);
 	}
 }

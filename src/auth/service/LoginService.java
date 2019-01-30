@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import jdbc.connection.ConnectionProvider;
 import member.dao.MemberDao;
-import member.model.Member;
+import member.model.MemberBean;
 
 public class LoginService {
 
@@ -13,7 +13,7 @@ public class LoginService {
 
 	public User login(String id, String password) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			Member member = memberDao.selectById(conn, id);
+			MemberBean member = memberDao.selectById(conn, id);
 			if (member == null) {
 				throw new LoginFailException();
 			}

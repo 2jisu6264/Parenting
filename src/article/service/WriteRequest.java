@@ -2,21 +2,21 @@ package article.service;
 
 import java.util.Map;
 
-import article.model.Writer;
+import article.model.WriterBean;
 
 public class WriteRequest {
 
-	private Writer writer;
+	private WriterBean writer;
 	private String title;
 	private String content;
 
-	public WriteRequest(Writer writer, String title, String content) {
+	public WriteRequest(WriterBean writer, String title, String content) {
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
 	}
 
-	public Writer getWriter() {
+	public WriterBean getWriter() {
 		return writer;
 	}
 
