@@ -1,9 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="calendar.EventBean"%>
+    pageEncoding="UTF-8" %>
   <jsp:useBean id="eventlist" class = "java.util.ArrayList" scope="request"/>
  <%@ page import = "java.util.Calendar" %> 
  <%@ page import="java.util.GregorianCalendar" %>
+<%@ page import = "java.sql.DriverManager" %>
+    <%@ page import = "java.sql.Connection"%>
+    <%@ page import = "java.sql.PreparedStatement"%>
+    <%@ page import = "java.sql.ResultSet" %>
+    <%@ page import = "java.sql.SQLException" %>
+   <%@ page import="javaBean.SimpleBean" %>
+<%
+Connection conn = null;
+PreparedStatement pstmt=  null;
+String jdbcDriver = "jdbc:mysql://localhost:3306/mydb?useSSL=false";
+try{
+    Class.forName("com.mysql.cj.jdbc.Driver");
+ 
+    String dbUser = "root";
+    String dbPass = "rootpw";
+ conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+ System.out.println("Driver found! Connection Good!");
+ }catch(SQLException se)
+ {se.printStackTrace();
+ }
 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,25 +42,34 @@ font-family: 'Noto Serif KR', serif;}
 font-family: 'Noto Serif KR', serif;}
 #other{color: #747474;text-align :center;
 font-family: 'Noto Serif KR', serif;} //id .는 class 아래는 박혀있는거
-pp{text-align: left; vertical-align: top;
-  padding-left: 3px; padding-top: 2px}
 </style>
 </head>
-
 <body>
 <% 
 Calendar cal = Calendar.getInstance();
 int nYear = cal.get(Calendar.YEAR);
 int nMonth = cal.get(Calendar.MONTH)+1;
 int nDay = cal.get(Calendar.DAY_OF_MONTH);
+
+try{
+	nYear=Integer.parseInt(request.getParameter("nYear"));
+	nMonth = Integer.parseInt(request.getParameter("nMonth"));
+}catch(Exception e){}
+if(nMonth==0){
+	nYear-=1; nMonth=12;
+}else if(nMonth==13){
+	nYear+=1; nMonth=1;
+}
 %>
 <p><%=nYear%></p>
-<form name="form1" method="post">
+<br>
 <p>
-<button type="button" class="btn btn-link">이전</button>
+<input type="button" class="btn btn-light"
+ value="이전달" onClick="location.href='?nYear=<%=nYear%>&nMonth=<%=nMonth-1%>'">
 <%=nMonth%>월
-<button type="button" class="btn btn-link">다음</button></p>
-</form>
+<input type="button" class="btn btn-light"
+value="다음달" onClick="location.href='?nYear=<%=nYear%>&nMonth=<%=nMonth+1%>'">
+</p>
 
 <divid>
 <table align="center"; border="1px #BDBDBD">
@@ -66,13 +96,33 @@ for(int blank=1; blank< week; blank++){
 <%
 }}
 %>
-<pp><th  width= 120px; height= 50px;><%=tempDay %></pp>
+<td style="text-align:left; vertical-align:top; padding-left:3px; padding-top:2px; font-family: 'Noto Serif KR', serif;"
+width= 120px; height= 80px;><%=tempDay %>
 <%
+int cyear, cmonth, cday; 
+String curl;
+try{ String sql = "SELECT babyyear, babymonth, babyday, babyname, babyplace FROM calendar";
+pstmt = conn.prepareStatement(sql);
+ResultSet rs = pstmt.executeQuery();
+while(rs.next())
+{
+	cyear = rs.getInt("babyyear");
+	cmonth = rs.getInt("babymonth");
+	cday = rs.getInt("babyday");
+	if(nYear==cyear && nMonth == cmonth && tempDay == cday){%>
+<font size = "0.5" color="F361A6">
+	<% 
+	out.println(rs.getString("babyname")+"<br>");%></font>
+	<% 
+	}
+}%></td><% 
+}catch(Exception e){}
 switch(cal.get(Calendar.DAY_OF_WEEK)){
 case Calendar.SATURDAY:
 %>
+</pp>
 <tr></tr>
-<%}} %>
+<%}}%>
 </table>
 </divid>
 </body>
