@@ -36,7 +36,7 @@ try{
 <script src="./js/bootstrap.min.js"></script>
 <title>Calendar</title>
 <style type="text/css">
-p{font-size:25px; text-align:center; font-family: 'Noto Serif KR', serif;}
+p{font-size:25px; text-align:center;}
 #sun{color: #F15F5F;text-align :center;
 font-family: 'Noto Serif KR', serif;}
 #sat{color: #6799FF;text-align :center;
@@ -62,12 +62,11 @@ if(nMonth==0){
 	nYear+=1; nMonth=1;
 }
 %>
-<h2 style="font-family: 'Gloria Hallelujah', cursive; color:#FFB2D9;"><%=nYear %></h2>
-<br>
+
 <p>
 <input type="button" class="btn btn-light"
  value="이전달" onClick="location.href='?nYear=<%=nYear%>&nMonth=<%=nMonth-1%>'">
-<%=nMonth%>월
+<font style="font-family: 'Gloria Hallelujah', cursive; color:#FFB2D9;"> <%=nYear %> . <%=nMonth%> </font>
 <input type="button" class="btn btn-light"
 value="다음달" onClick="location.href='?nYear=<%=nYear%>&nMonth=<%=nMonth+1%>'">
 </p>

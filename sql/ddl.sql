@@ -3,7 +3,7 @@ create database mydb default character set utf8;
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' identified by 'rootpw'
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' identified by 'rootpw'
-*//*hyerin: ¿À·ù »ý°Ü¼­ ÁÖ¼®Ã³¸®ÇÔ.*/
+*//*hyerin: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ü¼ï¿½ ï¿½Ö¼ï¿½Ã³ï¿½ï¿½ï¿½ï¿½.*/
 
 create table mydb.member (
     memberid varchar(50) primary key,

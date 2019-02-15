@@ -3,39 +3,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<style>
-    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+<style type="text/css">
+a{
+text-decoration:none; 
+}
 .header{
-padding:30px;
+padding:0px;
 text-align: center;
 background: white;
 }
-.h1{
-font-size : 50px;
-font-family: 'Gloria Hallelujah', cursive; 
-}
 .leftcolumn{
 float: left;
-width: 75%;
+width: 80%;
 }
 .rightcolumn{
-float: left; width:25%; background-color: #f1f1f1;
-padding-left: 20px;
+float: left; width:20%; background-color: #f1f1f1;
+ align:top;
 }
 </style>
 </head>
 <body>
 <div>
-<p id="h1"> Baby fair</p>
+<a href="calendar.jsp" target="main" style="font-size:50px; font-family: 'Open Sans', sans-serif; font-color:#D5D5D5; padding-left:500px;"> Baby fair</a>
 </div>
 <table>
 <tr>
 <td id="leftcolumn">
-<jsp:include page="calendar.jsp"/></td>
+<iframe  width="1000" height="700" src="calendar.jsp" name="main" frameborder="0" scrolling="auto"></iframe>
 <td id="rightcolumn">
-<jsp:include page="category.jsp"/></td>
+<table style="border-collapse:separate; border-spacing:20px; align:top;">
+<tr><td><jsp:include page="/WEB-INF/view/loginForm.jsp"/></td></tr>
+<tr><td><jsp:include page="category.jsp"/></td></tr>
+</table>
+</td>
 </tr>
 
 </table>

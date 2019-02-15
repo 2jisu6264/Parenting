@@ -35,9 +35,9 @@ li a:hover:not(.active) {
 <body>
 	<ul>
 	<li><a class="active" href="calendar.jsp" target="main">메뉴(달력)</a></li>
-	<li><a href="cal_db.jsp" target="main">완구 게시판</a></li>
-	<li><a href="cal_db.jsp" target="main">공지사항</a></li>
-	<li><a href="cal_db.jsp" target="main">질문 게시판</a></li>
+	<li><a href="article/list.do" target="main">완구 게시판</a></li>
+	<li><a href="article/list.do" target="main">공지사항</a></li>
+	<li><a href="article/list.do" target="main">질문 게시판</a></li>
 	</ul>
 </body>
 </html>
