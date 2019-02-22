@@ -50,6 +50,18 @@ public class ArticleContentDao {
 		}
 	}
 
+	public int deleteById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(
+					"delete from article_content where article_no = ?");
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
 	public int update(Connection conn, int no, String content) throws SQLException {
 		try (PreparedStatement pstmt = 
 				conn.prepareStatement(

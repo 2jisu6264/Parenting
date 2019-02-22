@@ -170,6 +170,20 @@ public class ArticleDao {
 		}
 	}
 	
+	//번호로 게시글 삭제하는 메서드
+	public int deleteById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(
+					"delete from article where article_no = ?");
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	
+	}
+	
 	public void increaseReadCount(Connection conn, int no) throws SQLException {
 		try (PreparedStatement pstmt = 
 				conn.prepareStatement(
