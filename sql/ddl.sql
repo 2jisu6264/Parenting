@@ -27,3 +27,7 @@ create table mydb.article_content (
     content text
 ) engine=InnoDB default character set = utf8;
 
+create table mydb.article_file (
+    article_no int primary key,
+    file varchar(50)
+) engine=InnoDB default character set = utf8;

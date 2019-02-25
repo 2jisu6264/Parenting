@@ -8,14 +8,23 @@
 <body>
 <form action="write.do" method="post">
 <p>
-	제목:<br/><input type="text" name="title" value="${param.title}">
-	<c:if test="${errors.title}">제목을 입력하세요.</c:if>
+   제목:<br/><input type="text" name="title" value="${param.title}">
+   <c:if test="${errors.title}">제목을 입력하세요.</c:if>
 </p>
 <p>
-	내용:<br/>
-	<textarea name="content" rows="5" cols="30">${param.title}</textarea>
+   내용:<br/>
+   <textarea name="content" rows="5" cols="30">${param.title}</textarea>
 </p>
 <input type="submit" value="새 글 등록">
 </form>
 </body>
 </html>
+<!-- 
+<form action="fileUpload.jsp" method="post" enctype="multipart/form-data">
+<p>
+	첨부파일:<br/>
+	<input type="file" name="file">
+</p> 
+<input type="submit" value="첨부하러 가기">
+</form>
+ -->

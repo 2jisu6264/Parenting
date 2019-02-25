@@ -25,6 +25,10 @@
 	<td>내용</td>
 	<td><u:pre value='${articleData.content}'/></td>
 </tr>
+<tr> 
+	<td>첨부파일</td>
+	<!-- <td>${articleData.file}</td>-->
+</tr>
 <tr>
 	<td colspan="2">
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}" />
