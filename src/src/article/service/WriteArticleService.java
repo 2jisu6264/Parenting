@@ -8,6 +8,7 @@ import article.dao.ArticleContentDao;
 import article.dao.ArticleDao;
 import article.model.ArticleBean;
 import article.model.ArticleContentBean;
+import article.model.ArticleFile;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 
@@ -34,7 +35,15 @@ public class WriteArticleService {
 			if (savedContent == null) {
 				throw new RuntimeException("fail to insert article_content");
 			}
-
+			
+			ArticleFile file = new ArticleFile(
+					savedArticle.getNumber(), 
+					req.getFile());
+			
+			ArticleFile savedfile = fileDao.insertFile(conn, file);
+			if (savedfile == null) {
+				throw new RuntimeException("fail to insert file");
+			}
 			conn.commit();
 
 			return savedArticle.getNumber();

@@ -54,6 +54,6 @@ public class WriteArticleHandler implements CommandHandler {
 		return new WriteRequest(
 				new WriterBean(user.getId(), user.getName()),
 				req.getParameter("title"),
-				req.getParameter("content"));
+				req.getParameter("content"), req.getParameter("file"));
 	}
 }
