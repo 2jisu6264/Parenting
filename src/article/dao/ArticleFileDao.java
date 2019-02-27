@@ -1,4 +1,4 @@
-package src.article.dao;
+package article.dao;
 import article.model.ArticleFile;
 import article.model.ArticleBean;
 import article.model.ArticleContentBean;

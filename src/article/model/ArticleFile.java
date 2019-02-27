@@ -1,4 +1,4 @@
-package src.article.model;
+package article.model;
 
 public class ArticleFile {
 	private Integer number;

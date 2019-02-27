@@ -3,6 +3,7 @@
 <%@ page import="java.io.File"%>
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %> <!-- 동일한 파일명일 시 바꿔주는 클래스 -->
 <%@ page import="com.oreilly.servlet.MultipartRequest" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,17 +19,17 @@ String encoding = "UTF-8";
 MultipartRequest multipartRequest = new MultipartRequest(request, directory, maxSize, encoding, 
 			new DefaultFileRenamePolicy());
 
-String fileName = multipartRequest.getOriginalFileName("file");
-String fileRealName = multipartRequest.getFilesystemName("file");
+String fileName = multipartRequest.getOriginalFileName("fileName");
+String fileRealName = multipartRequest.getFilesystemName("fileName");
 
 
 out.write("파일명:"+ fileName + "<br>");
 out.write("실제 파일명:" + fileRealName+"<br>");
 out.write(directory);
 %>
-
-<form action="WEB-INF/view/newArticleForm.jsp">
-<input type="hidden" name="file" value=<%=fileName %>>
+	
+<form action="article/write.do" method="post">
+<input type="hidden" name="fileName" value=<%=fileName %>>
 <input type="submit" value="첨부">
 </form>
 </body>
