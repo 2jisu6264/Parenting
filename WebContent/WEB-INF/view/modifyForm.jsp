@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%  
+String fileName = request.getParameter("file_modify");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +22,9 @@
 	내용:<br/>
 	<textarea name="content" rows="5" cols="30">${modReq.content}</textarea>
 </p>
+<input type="hidden" name="file" value="<%=fileName %>">
 <input type="submit" value="글 수정">
 </form>
+
 </body>
 </html>

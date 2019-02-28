@@ -8,11 +8,12 @@ import article.dao.ArticleDao;
 import article.model.ArticleBean;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
-
+import article.dao.ArticleFileDao;
 public class ModifyArticleService {
 
 	private ArticleDao articleDao = new ArticleDao();
 	private ArticleContentDao contentDao = new ArticleContentDao();
+	private ArticleFileDao fileDao = new ArticleFileDao();
 
 	public void modify(ModifyRequest modReq) {
 		Connection conn = null;
@@ -32,6 +33,8 @@ public class ModifyArticleService {
 					modReq.getArticleNumber(), modReq.getTitle());
 			contentDao.update(conn, 
 					modReq.getArticleNumber(), modReq.getContent());
+			fileDao.update(conn, modReq.getArticleNumber(), modReq.getFile());
+			
 			conn.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);

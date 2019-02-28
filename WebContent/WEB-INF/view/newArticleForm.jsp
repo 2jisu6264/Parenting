@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%  
-String fileName = request.getParameter("fileName");
+<% String fileName= request.getParameter("file_write");
 %>
 <!DOCTYPE html>
 <html>
@@ -19,8 +18,10 @@ String fileName = request.getParameter("fileName");
    <textarea name="content" rows="5" cols="30">${param.title}</textarea>
 </p>
 <input type="hidden" name="file" value="<%=fileName %>">
+
 <input type="submit" value="새 글 등록">
 </form>
-	
+
+
  </body>
 </html>

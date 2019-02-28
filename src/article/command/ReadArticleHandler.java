@@ -18,7 +18,7 @@ public class ReadArticleHandler implements CommandHandler {
 			throws Exception {
 		
 		String noVal = req.getParameter("no");
-		int articleNum = Integer.parseInt(noVal);
+		int articleNum = Integer.parseInt(noVal); //Integer.parseInt
 		try {
 	         ArticleData articleData = readService.getArticle(articleNum, true);
 	         req.setAttribute("articleData", articleData);

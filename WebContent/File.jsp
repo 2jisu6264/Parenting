@@ -13,6 +13,7 @@
 	<input type="file" name="file">
 </p> 
 <input type="submit" value="확인">
+<input type="reset" value="취소">
 </form>
 
 </body>

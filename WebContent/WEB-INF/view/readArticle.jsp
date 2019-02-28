@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
-<%@import ="article.service.ArticleData" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,7 @@
 </tr>
 <tr> 
 	<td>첨부파일</td>
-	<a href = "fileDownload.jsp?file=${articleData.file}">다운로드</a>
+	<td><a href = "fileDownload.jsp?file=${articleData.file}">다운로드하기</a></td>
 </tr>
 <tr>
 	<td colspan="2">

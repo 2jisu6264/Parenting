@@ -12,13 +12,14 @@ import article.service.WriteRequest;
 import auth.service.User;
 import mvc.command.CommandHandler;
 
-public class WriteArticleHandler implements CommandHandler {
-   private static final String FORM_VIEW = "/WEB-INF/view/newArticleForm.jsp";
+public class WriteArticleHandler implements CommandHandler { ///WEB-INF/view/newArticleForm.jsp
+   private static final String FORM_VIEW = "WEB-INF/view/newArticleForm.jsp";
    private WriteArticleService writeService = new WriteArticleService();
    
    @Override
    public String process(HttpServletRequest req, HttpServletResponse res) {
-      if (req.getMethod().equalsIgnoreCase("GET")) {
+	  
+	   if (req.getMethod().equalsIgnoreCase("GET")) {
          return processForm(req, res);
       } else if (req.getMethod().equalsIgnoreCase("POST")) {
          return processSubmit(req, res);

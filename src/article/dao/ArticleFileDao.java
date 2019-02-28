@@ -53,5 +53,18 @@ public class ArticleFileDao {
 			JdbcUtil.close(pstmt);
 		}
 	}
+	
+
+	public int update(Connection conn, int no, String file) throws SQLException {
+		try (PreparedStatement pstmt = 
+				conn.prepareStatement(
+						"update article_file set file= ? "+
+						"where article_no = ?")) {
+			pstmt.setString(1, file);
+			pstmt.setInt(2, no);
+			return pstmt.executeUpdate();
+		}
+	}
+	
 }
 
