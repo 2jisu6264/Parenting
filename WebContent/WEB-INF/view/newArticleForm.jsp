@@ -6,10 +6,10 @@
 <title>게시글 쓰기</title>
 </head>
 <body>
-<form action="write.do" method="post">
+<form action="write.do" id="write" method="post">
 <p>
 	제목:<br/><input type="text" name="title" value="${param.title}">
-	<c:if test="${errors.title}">제목을 입력하세요.</c:if>
+	<c:if test="${errors.title}"><script>alert('제목을 입력하세요.'); window.history.go(-1)</script></c:if>
 </p>
 <p>
 	내용:<br/>

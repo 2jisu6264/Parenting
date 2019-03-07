@@ -72,7 +72,7 @@
 	</div>
 </c:if>
 	<div>
-
+	
 		<form method="get" action="list.do">
 				<select name="option">
 					<option>제목</option>

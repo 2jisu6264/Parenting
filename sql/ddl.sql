@@ -1,3 +1,4 @@
+/*데이터 정의어*/
 /*
 create database mydb default character set utf8;
 
@@ -11,6 +12,7 @@ create table mydb.member (
     password varchar(10) not null,
     regdate datetime not null
 ) engine=InnoDB default character set = utf8;
+/*깨알: engine=5.5 부터는 기본 엔진이 InnoDB 니까 안써줘도 된다고 함.*/
 
 create table mydb.article (
     article_no int auto_increment primary key,
@@ -27,3 +29,13 @@ create table mydb.article_content (
     content text
 ) engine=InnoDB default character set = utf8;
 
+create table mydb.reply (
+	reply_no int auto_increment primary key,
+    article_no int,
+	writer_id varchar(50) not null,
+	writer_name varchar(50) not null,
+    content text,
+    regdate datetime not null,
+    moddate datetime not null,
+    read_cnt int	
+) engine=InnoDB default character set = utf8;
