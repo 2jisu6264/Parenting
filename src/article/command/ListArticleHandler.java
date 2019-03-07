@@ -9,7 +9,7 @@ import mvc.command.CommandHandler;
 
 public class ListArticleHandler implements CommandHandler {
 
-	private ListArticleService listService = new ListArticleService();
+   private ListArticleService listService = new ListArticleService();
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) 

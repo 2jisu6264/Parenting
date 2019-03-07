@@ -48,7 +48,8 @@ public class ModifyArticleHandler implements CommandHandler {
 			}
 			ModifyRequest modReq = new ModifyRequest(authUser.getId(), no,
 					articleData.getArticle().getTitle(),
-					articleData.getContent());
+					articleData.getContent(),
+					articleData.getFile());
 
 			req.setAttribute("modReq", modReq);
 			return FORM_VIEW;
@@ -71,7 +72,7 @@ public class ModifyArticleHandler implements CommandHandler {
 
 		ModifyRequest modReq = new ModifyRequest(authUser.getId(), no,
 				req.getParameter("title"),
-				req.getParameter("content"));
+				req.getParameter("content"), req.getParameter("file"));
 		req.setAttribute("modReq", modReq);
 
 		Map<String, Boolean> errors = new HashMap<>();

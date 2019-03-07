@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style type="text/css">
+*{margin:0; padding:0;}
+body{font-family:'Montserrat'; color:#333;}
+.container{display:flex; justify-content:center; align-items:center; height:80vh;}
+.slider-wrapper{width:600px; height:300px; overflow:hidden;}
+.inner-wrapper{width:300%; height:100%; position:relative; left:-100%;}
+.slide{width:calc(100% / 3); height:100%; float:left; font-size:100px;
+color:black; display:flex; justify-content:center; align-items:center;}
+.button{width:30px; height:30px; border-top:2px solid black; position:absolute; cursor:pointer;}
+.prev{border-left:2px solid black; left:10%; transform:rotate(-45deg);}
+.next{border-left:2px solid black; right:10%; transform:rotate(135deg);}
+</style>
+<script language="JavaScript">
+
+$(function(){
+	var inWrap=$('.inner-wrapper');
+	 var $banner = $(".inner-wrapper");
+
+		var $bannerWidth = $banner.children().outerWidth();//배너 이미지의 폭
+		var $bannerHeight = $banner.children().outerHeight(); // 높이
+		var $bannerLength = $banner.children().length;//배너 이미지의 갯수
+		var rollingId;
+
+
+		rollingId = setInterval(function() { rollingStart(); }, 3000);
+		
+		$banner.mouseover(function(){
+			clearInterval(rollingId);
+			$(this).css("cursor", "pointer");
+		});
+
+		$banner.mouseout(function(){
+			rollingId = setInterval(function() { rollingStart(); }, 3000);
+			$(this).css("cursor", "default");
+		});
+
+		
+		function rollingStart() {
+			$banner.animate({left: '-200%'}, 500, function(){
+				inWrap.css('left', '-100%');
+				$('.slide').last().after($('.slide').first());
+			});
+		}
+
+
+	$('.prev').on('click', function(){
+		inWrap.animate({left: '0%'}, 500, function(){
+			inWrap.css('left', '-100%');
+			$('.slide').first().before($('.slide').last());
+		});
+	});
+	$('.next').on('click', function(){
+		inWrap.animate({left: '-200%'}, 500, function(){
+			inWrap.css('left', '-100%');
+			$('.slide').last().after($('.slide').first());
+		});
+	});
+
+});
+</script>
+</head>
+<body>
+<div class="container">
+<div class="slider-wrapper">
+<div class="inner-wrapper">
+<div class="slide" style="background:#FF0000;">1</div>
+<div class="slide" style="background:#FF5E00;">2</div>
+<div class="slide" style="background:#FFBB00;">3</div>
+</div>
+</div>
+<div class="button prev"></div>
+<div class="button next"></div>
+</div>
+
+</body>
+</html>

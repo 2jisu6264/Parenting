@@ -30,13 +30,14 @@ public class ReadArticleHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) 
 			throws Exception {
+		
 		String noVal = req.getParameter("no");
-		int articleNum = Integer.parseInt(noVal);
+		int articleNum = Integer.parseInt(noVal); //Integer.parseInt
 		try {
-			ArticleData articleData = readService.getArticle(articleNum, true);
-			req.setAttribute("articleData", articleData);
+
+			
 			//=========
-			/*Map<String, Boolean> errors = new HashMap<>();
+			Map<String, Boolean> errors = new HashMap<>();
 			req.setAttribute("errors", errors);
 
 			User user = (User)req.getSession(false).getAttribute("authUser");
@@ -49,10 +50,14 @@ public class ReadArticleHandler implements CommandHandler {
 			
 			int newReplyNo = writeService.write(writeReq, articleNum);
 			req.setAttribute("newReplyNo", newReplyNo);
-				*/
+				
 			//=========
+	         ArticleData articleData = readService.getArticle(articleNum, true);
+	         req.setAttribute("articleData", articleData);
+	         
+//>>>>>>> branch 'master' of https://github.com/2jisu6264/Parenting
 			return "/WEB-INF/view/readArticle.jsp";
-		} catch (ArticleNotFoundException | ArticleContentNotFoundException e) {
+		} catch (ArticleNotFoundException | ArticleContentNotFoundException|NumberFormatException e) {
 			req.getServletContext().log("no article", e);
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;

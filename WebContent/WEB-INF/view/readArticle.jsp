@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <link rel="stylesheet" href="../bootstrap-3.3.2-dist/css/bootstrap.min.css">
 </head>
 <body>
-<table class="table" width="500px" style="table-layout:fixed;">
+<table class="table" style="table-layout:fixed;">
 <tr>
 	<th class="info" width="100px">번호</th>
 	<td>${articleData.article.number}</td>
@@ -25,7 +26,12 @@
 	<th class="info">내용</th>
 	<td style="word-break:break-all;"><u:pre value='${articleData.content}'/></td>
 </tr>
+<tr> 
+	<td>첨부파일</td>
+	<td><a href = "fileDownload.jsp?file=${articleData.file}">다운로드하기</a></td>
+</tr>
 </table>
+
 <div class="container">
         <label for="content">댓글</label>
         <form method="get">
@@ -37,6 +43,7 @@
               </div>
         </form>
 </div>
+
 <div class="container">
 <c:if test="">
 	<tr>
@@ -49,12 +56,15 @@
         	<div class="replyInfo">댓글번호 : ${reply.number}  작성자 : ${reply.writer.name}
 			<a href=""> 수정 </a>
             <a href=""> 삭제 </a> </div>
+      
             <div class="replyContent"> <p>${reply.content}</p></div>
             </div>
 	</c:forEach>
 </div>
 </div>
 <table>
+
+
 <tr>
 	<td colspan="2">
 		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}" />

@@ -4,7 +4,7 @@ create database mydb default character set utf8;
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' identified by 'rootpw'
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' identified by 'rootpw'
-*//*hyerin: ¿À·ù »ý°Ü¼­ ÁÖ¼®Ã³¸®ÇÔ.*/
+*//*hyerin: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ü¼ï¿½ ï¿½Ö¼ï¿½Ã³ï¿½ï¿½ï¿½ï¿½.*/
 
 create table mydb.member (
     memberid varchar(50) primary key,
@@ -29,6 +29,7 @@ create table mydb.article_content (
     content text
 ) engine=InnoDB default character set = utf8;
 
+<<<<<<< HEAD
 create table mydb.reply (
 	reply_no int auto_increment primary key,
     article_no int,
@@ -38,4 +39,8 @@ create table mydb.reply (
     regdate datetime not null,
     moddate datetime not null,
     read_cnt int	
+}engine=InnoDB default character set = utf8;
+create table mydb.article_file (
+    article_no int primary key,
+    file varchar(50)
 ) engine=InnoDB default character set = utf8;
