@@ -11,11 +11,10 @@ import jdbc.JdbcUtil;
 import member.model.MemberBean;
 
 public class MemberDao {
-
-	public MemberBean selectById(Connection conn, String id) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
+public MemberBean selectById(Connection conn, String id) throws SQLException {
+PreparedStatement pstmt = null;
+ResultSet rs = null;
+try {
 			pstmt = conn.prepareStatement(
 					"select * from member where memberid = ?");
 			pstmt.setString(1, id);
