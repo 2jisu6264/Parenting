@@ -63,7 +63,7 @@ public class ChangePasswordHandler implements CommandHandler {
 		} catch (MemberNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
-		}
+	}
 	}
 
 }
