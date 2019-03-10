@@ -54,7 +54,7 @@ public class JoinHandler implements CommandHandler {
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", Boolean.TRUE);
 			return FORM_VIEW;
-		}
+	}
 	}
 
 }
